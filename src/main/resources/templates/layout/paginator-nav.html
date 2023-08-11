@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+    <nav th:fragment="paginator" aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item" th:class="${page.first}? 'page-item disabled':'page-item'">
+                <span th:if="${page.first}" class="page-link">Primera</span>
+                <a th:if="${not page.first}" class="page-link" th:href="@{${page.url}(page=0)}">Primera</a>
+            </li>
+            <li class="page-item" th:class="${not page.isHasPrevius}? 'page-item disabled':'page-item'">
+                <span th:if="${not page.isHasPrevius}" class="page-link">&laquo;</span>
+                <a th:if="${page.isHasPrevius}" class="page-link" th:href="@{${page.url}(page=${page.paginaActual-2})}">&laquo;</a>
+            </li>
+            <li class="page-item" th:each="item: ${page.paginas}" th:class="${item.actual}? 'page-item active':'page-item'" >
+                <span th:if="${item.actual}" th:text="${item.numero}" class="page-link"></span>
+                <a th:if="${not item.actual}"  class="page-link" th:href="@{${page.url}(page=${item.numero-1})}" th:text="${item.numero}"></a>
+            </li>
+            <li class="page-item" th:class="${not page.isHasNext}? 'page-item disabled':'page-item'">
+                <span th:if="${not page.isHasNext}" class="page-link">&raquo;</span>
+                <a th:if="${page.isHasNext}" class="page-link" th:href="@{${page.url}(page=${page.paginaActual})}">&raquo;</a></li>
+
+            <li class="page-item" th:class="${page.last}? 'page-item disabled':'page-item'" >
+                <span th:if="${page.last}" class="page-link">Última</span>
+                <a th:if="${not page.last}" class="page-link" th:href="@{${page.url}(page=${page.totalPaginas-1})}">Última</a>
+            </li>
+        </ul>
+    </nav>
+
+</body>
+</html>
