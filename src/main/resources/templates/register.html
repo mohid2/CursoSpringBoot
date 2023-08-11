@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{layout/layout :: head}">
+</head>
+<body>
+<header th:replace="~{layout/layout :: header}" ></header>
+<br>
+<div class="container-fluid h-100 ">
+  <div class="row justify-content-center align-items-center h-100 ">
+    <div class="col-md-4">
+      <div class="modal-content">
+        <div class="card-header">
+          <h1 th:text="${titulo}" class="text-center col-12 forgot"></h1>
+          <form th:action="@{/registro}" th:object="${usuario}" method="post" >
+            <div class="form-group">
+              <input type="text" name="userName" th:field="*{nombreUsuario}" placeholder="Nombre de usuario" class="form-control" required/>
+            </div>
+            <div class="form-group">
+              <input type="password" name="password" th:field="*{password}" placeholder="Contraseña" class="form-control" required/>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> Registrar </button>
+            </div>
+            <div class="alert alert-danger text-center" th:if="${errorMessage}" th:text="${errorMessage}">Error MEssage</div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
