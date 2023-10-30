@@ -10,6 +10,6 @@ import java.util.Optional;
 
 public interface IClienteRepository extends JpaRepository<Cliente, Long> {
 
-	@Query("select c from Cliente c left join fetch c.facturas f where c.id=?1")
+	@Query("select c from Cliente c  join fetch c.facturas f  join fetch f.itemFacturas if join fetch if.producto where c.id=?1")
 	public Optional<Cliente> fetchByIdWithFacturas(Long id);
 }

@@ -10,9 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table(name = "clientes")
@@ -35,10 +33,10 @@ public class Cliente implements Serializable {
     private String foto;
     @OneToMany(mappedBy ="cliente" ,fetch = FetchType.LAZY,cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
-    private List<Factura> facturas;
+    private Set<Factura> facturas;
 
     public Cliente() {
-        this.facturas = new ArrayList<>() ;
+        this.facturas = new HashSet<>() ;
     }
 
     public Cliente(Long id, String nombre, String apellidos, String email,  LocalDate fechaAlta, String foto) {
@@ -48,7 +46,7 @@ public class Cliente implements Serializable {
         this.email = email;
         this.fechaAlta = fechaAlta;
         this.foto = foto;
-        this.facturas = new ArrayList<>() ;
+        this.facturas = new HashSet<>() ;
     }
     @PrePersist
     public void prePersist() {
@@ -102,11 +100,11 @@ public class Cliente implements Serializable {
         this.foto = foto;
     }
 
-    public List<Factura> getFacturas() {
+    public Set<Factura> getFacturas() {
         return facturas;
     }
 
-    public void setFacturas(List<Factura> facturas) {
+    public void setFacturas(Set<Factura> facturas) {
         this.facturas = facturas;
     }
 

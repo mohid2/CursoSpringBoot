@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "usuarios")
@@ -18,13 +20,13 @@ public class Usuario implements Serializable {
     private String password;
     private boolean activo;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.ALL)
-    private List<Role> roles=new ArrayList<>();
+    private Set<Role> roles=new HashSet<>() ;
 
     public Usuario() {
 
     }
 
-    public Usuario(Long id, String nombreUsuario, String password, boolean activo, List<Role> roles) {
+    public Usuario(Long id, String nombreUsuario, String password, boolean activo, Set<Role> roles) {
         this.id = id;
         this.nombreUsuario = nombreUsuario;
         this.password = password;
@@ -64,11 +66,11 @@ public class Usuario implements Serializable {
         this.activo = activo;
     }
 
-    public List<Role> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<Role> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
     public void addRole(Role roles) {

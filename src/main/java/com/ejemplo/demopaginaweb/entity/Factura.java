@@ -14,7 +14,9 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -35,10 +37,10 @@ public class Factura implements Serializable {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "factura_id")
     @JsonManagedReference
-    private List<ItemFactura> itemFacturas;
+    private Set<ItemFactura> itemFacturas;
 
     public Factura() {
-        itemFacturas = new ArrayList<>();
+        itemFacturas = new HashSet<>() ;
     }
 
 
@@ -88,11 +90,11 @@ public class Factura implements Serializable {
         this.cliente = cliente;
     }
 
-    public List<ItemFactura> getItemFacturas() {
+    public Set<ItemFactura> getItemFacturas() {
         return itemFacturas;
     }
 
-    public void setItemFacturas(List<ItemFactura> itemFacturas) {
+    public void setItemFacturas(Set<ItemFactura> itemFacturas) {
         this.itemFacturas = itemFacturas;
     }
 
@@ -105,17 +107,5 @@ public class Factura implements Serializable {
         int decimals = 2;
         BigDecimal rounded = number.setScale(decimals, RoundingMode.HALF_UP);
         return rounded.doubleValue();
-    }
-
-    @Override
-    public String toString() {
-        return "Factura{" +
-                "id=" + id +
-                ", descripcion='" + descripcion + '\'' +
-                ", observacion='" + observacion + '\'' +
-                ", fecha=" + fecha +
-                ", cliente=" + cliente +
-                ", itemFacturas=" + itemFacturas +
-                '}';
     }
 }
