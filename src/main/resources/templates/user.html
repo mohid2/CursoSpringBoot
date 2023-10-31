@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{layout/layout :: head}">
+</head>
+<link rel="stylesheet" th:href="@{/css/login.css}">
+<body>
+<header th:replace="~{layout/layout :: header}"></header>
+<br>
+<div class="center-container">
+    <div class="login-wrap">
+        <div class="register-html">
+            <h1 class="text-center">Datos de usuario</h1>
+            <div class="login-form">
+                <form th:action="@{/perfil}" th:object="${usuario}" method="get">
+                    <div class="group">
+                        <label for="name" class="label">Nombre</label>
+                        <input type="text" name="firstname" th:value="${usuario.firstname}" id="name"
+                               class="input" readonly/>
+                    </div>
+                    <div class="group">
+                        <label for="lastname" class="label">Apellido</label>
+                        <input type="text" name="lastname" th:value="${usuario.lastname}" id="lastname"
+                               class="input" readonly/>
+                    </div>
+                    <div class="group">
+                        <label for="email" class="label">Correo</label>
+                        <input type="email" name="email" th:value="${usuario.email}" id="email" class="input"
+                               readonly/>
+                    </div>
+                    <div class="group">
+                        <label for="use" class="label">Nombre de usuario</label>
+                        <input type="text" name="userName" th:value="${usuario.nombreUsuario}" id="use" class="input"
+                               readonly/>
+                    </div>
+                </form>
+                <div class="hr"></div>
+                <div class="col-12 forgot text-center">
+                    <p>¿Quieres eliminar tu perfil? <a th:href="@{/eliminar}">Eliminar perfil</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script th:src="@{/js/popper.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/jquery-ui.min.js}"></script>
+</html>

@@ -92,8 +92,7 @@ INSERT INTO item_facturas (cantidad, factura_id, producto_id) VALUES(3,3, 9);
 
 -- Insertar datos en la tabla usuarios
 
-INSERT INTO usuarios (nombre_usuario, password, activo) VALUES ('admin', 'moha', true);
-INSERT INTO usuarios (nombre_usuario, password, activo) VALUES('usuario','moha', true);
+INSERT INTO usuarios (nombre, apellido,correo,nombre_usuario, contraseña, activo) VALUES('mohammed','elyousfi','mohammed@gmail.com','usuario','moha', true);
 
 -- Insertar datos en la tabla roles
 INSERT INTO roles (role, usuario_id) VALUES ('ROLE_USER', 1); -- Rol 'admin' pertenece a usuario con ID 1

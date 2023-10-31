@@ -148,3 +148,11 @@ a{color:inherit;text-decoration:none}
         align-items: center;
         height: 80vh; /* Esto asegura que el contenedor ocupe el 100% del alto de la ventana */
     }
+.register-html {
+    width: 100%;
+    max-width: 600px; /* Ajusta este valor según tus necesidades */
+    margin: 0 auto; /* Esto centrará el contenido horizontalmente */
+    position: absolute;
+    padding: 50px; /* Ajusta el espacio interno según tus necesidades */
+    background: rgba(0, 0, 0, 0.5);
+}
