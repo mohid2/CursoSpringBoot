@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{layout/layout :: head}">
+</head>
+<link  rel="stylesheet" th:href="@{/css/login.css}">
+<body>
+<header th:replace="~{layout/layout :: header}" ></header>
+<br>
+<div class="center-container">
+  <div class="login-wrap">
+    <div class="register-html">
+     <h1  class="text-center">REGISTRO</h1>
+      <div class="login-form">
+        <form th:action="@{/registro}" th:object="${usuario}" method="post">
+          <div class="group">
+            <label for="name" class="label">Nombre</label>
+            <input type="text" name="firstname" th:field="*{firstname}" placeholder="Nombre" id="name"
+                   class="input" autofocus required/>
+          </div>
+          <div class="group">
+            <label for="lastname" class="label">Apellido</label>
+            <input type="text" name="lastname" th:field="*{lastname}" placeholder="Apellido" id="lastname"
+                   class="input" required/>
+          </div>
+          <div class="group">
+            <label for="email" class="label">Correo</label>
+            <input type="email" name="email" th:field="*{email}" placeholder="ejemplo@gmail.com" id="email"
+                   class="input" required/>
+          </div>
+          <div class="group">
+            <label for="use" class="label">Nombre de usuario</label>
+            <input type="text" name="userName" th:field="*{nombreUsuario}" placeholder="Nombre de usuario"
+                   id="use" class="input" required/>
+          </div>
+          <div class="group">
+            <label for="pass" class="label">Contraseña</label>
+            <input name="password" th:field="*{password}" placeholder="******" id="pass" type="password"
+                   class="input" required/>
+          </div>
+          <div class="group">
+            <input type="submit" class="button" value="Registrar">
+          </div>
+        </form>
+        <div class="hr"></div>
+        <div class="col-12 forgot text-center">
+          <p>¿Tienes cuenta? <a th:href="@{/login}">Iniciar Sesión</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

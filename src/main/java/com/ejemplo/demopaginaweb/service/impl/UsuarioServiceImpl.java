@@ -6,6 +6,8 @@ import com.ejemplo.demopaginaweb.service.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UsuarioServiceImpl implements IUsuarioService {
 
@@ -18,5 +20,15 @@ public class UsuarioServiceImpl implements IUsuarioService {
     @Override
     public Usuario createUser(Usuario usuario) throws Exception {
         return iUsuarioRepository.save(usuario);
+    }
+
+    @Override
+    public Optional<Usuario> getUserByUsername(String name) {
+        return iUsuarioRepository.findByNombreUsuario(name);
+    }
+
+    @Override
+    public void deleteUser(Usuario usuario) {
+        iUsuarioRepository.delete(usuario);
     }
 }
